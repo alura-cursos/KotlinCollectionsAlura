@@ -68,4 +68,16 @@ fun main() {
 
     arrayDeZeros[0] = 1
     println(arrayDeZeros.joinToString())
+
+    for(valor in valores) {
+        valor =  valor * 2 // não compila
+    }
+
+    for(i in 0 until valores.size) {
+        valores[i] = valores[i] * 2
+    }
+
+    for(i in valores.indices) {
+        valores[i] = valores[i] * 2
+    }
 }

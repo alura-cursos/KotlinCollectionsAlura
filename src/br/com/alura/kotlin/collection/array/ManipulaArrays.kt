@@ -19,13 +19,10 @@ fun main() {
 
     // Outras funções para construir e inicializar arrays de valores primitivos
 
-    val bytes = byteArrayOf(-128, 0, 1, 2, 127)
-    val idades = shortArrayOf(10, 19, 40, 67)
-    val alfabeto = charArrayOf('a', 'b', 'c', 'd', 'e')
+    val alfabeto = charArrayOf('a', 'b', 'c', 'd', 'e', 'f')
+    val idades = intArrayOf(10, 19, 33, 40, 67)
     val fibonacci = intArrayOf(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)
-    val arrayDeMilissegundos = longArrayOf(10000000093333, 23400000093333, 33904392035517)
-    val valores = doubleArrayOf(10.55, 29.99, 10000.00)
-    val respostas = booleanArrayOf(true, true, false, true, false)
+    val salarios = doubleArrayOf(1500.55, 2990.99, 8500.0, 10000.0)
 
 
     // Acessando elementos do array
@@ -34,26 +31,27 @@ fun main() {
 
     val quartoElementoSequenciaDeFibonacci = fibonacci[3]
 
-    val ultimaResposta = respostas[respostas.size - 1]
+    val ultimoSalario = salarios[salarios.size -1]
 
 
     // Percorrendo arrays
 
-    for(i in 0..fibonacci.size) { // ArrayIndexOutOfBoundsException
-        print("${fibonacci[i]} - ")
-    }
+//    for(i in 0..fibonacci.size) {
+//        print("${fibonacci[i]} - ")
+//    }
+//    ArrayIndexOutOfBoundsException
 
     for(i in 0..(fibonacci.size -1)) {
         print("${fibonacci[i]} - ")
     }
 
-    for(i in 0 until valores.size) {
-        val valorFormatado = "%.2f".format(valores[i]) // formata para duas casas decimais
+    println()
+    for(i in 0 until salarios.size) {
+        val valorFormatado = "%.2f".format(salarios[i]) // formata para duas casas decimais
         println("R$ $valorFormatado")
     }
 
-    var maiorIdade: Short = 0
-
+    var maiorIdade = 0
     for(idade in idades) {
         if(maiorIdade < idade) {
             maiorIdade = idade
@@ -64,20 +62,35 @@ fun main() {
 
     println("Maior idade: ${idades.max()}")
 
+    val mediaDasIdades = idades.average()
+    println("Média das idades: $mediaDasIdades")
+
+    val todosMaiores = idades.all { it < 18 }
+    println("Todos são maiores? $todosMaiores")
+
+    val existeAlgumMenor = idades.any { it < 18 }
+    println("Existe algum menor? $existeAlgumMenor")
+
+    val somaDosSalarios = salarios.sum()
+    println("Soma de todos os salários: $somaDosSalarios")
+
+    val salariosAcimaDeCincoMil = salarios.filter { it > 5000 }
+    println("Salários acima de 5 mil: $salariosAcimaDeCincoMil")
+
+    val def = alfabeto.drop(3)
+    println("d e f: $def")
+
     // Alterando arrays
 
     arrayDeZeros[0] = 1
     println(arrayDeZeros.joinToString())
 
-    for(valor in valores) {
-        valor =  valor * 2 // não compila
-    }
+//    for(valor in valores) {
+//        valor =  valor * 2
+//    }
+//    Não compila
 
-    for(i in 0 until valores.size) {
-        valores[i] = valores[i] * 2
-    }
-
-    for(i in valores.indices) {
-        valores[i] = valores[i] * 2
+    for(i in salarios.indices) {
+        salarios[i] = salarios[i] * 2
     }
 }

@@ -62,14 +62,17 @@ fun main() {
 
     println("Maior idade: ${idades.max()}")
 
-    val mediaDasIdades = idades.average()
-    println("Média das idades: $mediaDasIdades")
+    val mediaIdades = idades.average()
+    println("Média das idades: $mediaIdades")
 
     val todosMaiores = idades.all { it < 18 }
-    println("Todos são maiores? $todosMaiores")
+    println("Todos são maiores de idade? $todosMaiores")
 
-    val existeAlgumMenor = idades.any { it < 18 }
-    println("Existe algum menor? $existeAlgumMenor")
+    val existeMenor = idades.any { it < 18 }
+    println("Existe algum menor de idade? $existeMenor")
+
+    val contemQuarenta = idades.contains(40)
+    println("Existe alguem com 40 anos? $contemQuarenta")
 
     val somaDosSalarios = salarios.sum()
     println("Soma de todos os salários: $somaDosSalarios")

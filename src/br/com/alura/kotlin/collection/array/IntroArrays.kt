@@ -70,7 +70,9 @@ fun main() {
 //    }
 //    Não compila
 
+    val aumento = 1.1
     for(i in salarios.indices) {
-        salarios[i] = salarios[i] * 2
+        salarios[i] = salarios[i] * aumento
     }
+    println("Salários após aumento: ${salarios.joinToString()}")
 }

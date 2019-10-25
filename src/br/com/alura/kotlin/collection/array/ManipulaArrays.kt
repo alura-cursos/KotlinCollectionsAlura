@@ -19,15 +19,15 @@ fun main() {
 
     // Outras funções para construir e inicializar arrays de valores primitivos
 
-    val alfabeto = charArrayOf('a', 'b', 'c', 'd', 'e', 'f')
+    val kotlin = charArrayOf('k', 'o', 't', 'l', 'i', 'n')
     val idades = intArrayOf(10, 19, 33, 40, 67)
     val fibonacci = intArrayOf(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89)
-    val salarios = doubleArrayOf(1500.55, 2990.99, 8500.0, 10000.0)
+    val salarios = doubleArrayOf(1500.55, 9100.0, 2990.99, 8500.0, 10000.0)
 
 
     // Acessando elementos do array
 
-    val primeiraLetraDoAlfabeto = alfabeto[0]
+    val letraK = kotlin[0]
 
     val quartoElementoSequenciaDeFibonacci = fibonacci[3]
 
@@ -65,7 +65,7 @@ fun main() {
     val mediaIdades = idades.average()
     println("Média das idades: $mediaIdades")
 
-    val todosMaiores = idades.all { it < 18 }
+    val todosMaiores = idades.all { it > 18 }
     println("Todos são maiores de idade? $todosMaiores")
 
     val existeMenor = idades.any { it < 18 }
@@ -80,8 +80,14 @@ fun main() {
     val salariosAcimaDeCincoMil = salarios.filter { it > 5000 }
     println("Salários acima de 5 mil: $salariosAcimaDeCincoMil")
 
-    val def = alfabeto.drop(3)
-    println("d e f: $def")
+    val kotlinOrdenada = kotlin.sorted()
+    println("Kotlin em ordem alfabetica: $kotlinOrdenada")
+
+    val lin = kotlin.drop(3)
+    println("kot[lin]: $lin")
+
+    val mediaFiltrada = salarios.filter { it > 2000 }.sorted().drop(1).average()
+    println("Média dos salários acima de R$ 2000,00 excluindo o menor valor: $mediaFiltrada")
 
     // Alterando arrays
 

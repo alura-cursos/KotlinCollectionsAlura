@@ -7,16 +7,25 @@ fun main() {
     val somaDosSalarios = salarios.sum()
     println("Soma total de salários: $somaDosSalarios")
 
-    val gastoInicial = 50000.0
     val aumento = 1.1
+    val salariosComAumento = salarios.map { it * aumento }
+    println("Salários com aumento: $salariosComAumento")
+
+    val salariosComAumentoMinimo = salarios.map { salario ->
+        if (salario < 5000) {
+            salario + 500
+        } else {
+            salario * aumento
+        }
+    }
+    println("Salários com aumento mínimo: $salariosComAumentoMinimo")
+
+    val gastoInicial = 50000.0
     val meses = 4
-    val somaSalariosComAumento = salarios.fold(gastoInicial) { acumulador, salario ->
-        acumulador + (salario * aumento * meses)
+    val somaSalariosComAumento = salariosComAumento.fold(gastoInicial) { acumulador, salario ->
+        acumulador + (salario * meses)
     }
     println("Soma total de salários com aumento: $somaSalariosComAumento")
-
-    val salariosAcimaDeCincoMil = salarios.filter { it > 5000 }
-    println("Salários acima de 5 mil: $salariosAcimaDeCincoMil")
 
     val salariosEmOrdem = salarios.sorted()
     println("Do menor para o maior: $salariosEmOrdem")

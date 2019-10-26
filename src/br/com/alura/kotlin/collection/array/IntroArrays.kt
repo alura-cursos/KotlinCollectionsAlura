@@ -57,7 +57,6 @@ fun main() {
             maiorIdade = idade
         }
     }
-
     println("Maior idade: $maiorIdade")
 
     // Alterando arrays

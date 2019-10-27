@@ -20,9 +20,9 @@ fun main() {
     }
     println("Salários com aumento mínimo: $salariosComAumentoMinimo")
 
-    val gastoInicial = 50000.0
-    val meses = 4
-    val somaSalariosComAumento = salariosComAumento.fold(gastoInicial) { acumulador, salario ->
+    val gastoInicial = salarios.sum()
+    val meses = 6
+    val somaSalariosComAumento = salariosComAumentoMinimo.fold(gastoInicial) { acumulador, salario ->
         acumulador + (salario * meses)
     }
     println("Soma total de salários com aumento: $somaSalariosComAumento")

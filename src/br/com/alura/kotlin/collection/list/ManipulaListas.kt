@@ -6,7 +6,7 @@ fun main() {
     val autores = listOf("João", "Helena", "Joaquim") // Tipo implícito: List<String>
 
     val nomesCompletos: List<String> = listOf(
-            "João Guimarâes Rosa",
+            "João Guimarães Rosa",
             "Helena Morley",
             "Joaquim Maria Machado de Assis"
     )

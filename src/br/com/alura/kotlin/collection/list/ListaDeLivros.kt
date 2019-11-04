@@ -1,20 +1,59 @@
 package br.com.alura.kotlin.collection.list
 
 fun main() {
-    val grandSertao = Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa")
-    val minhaVida = Livro(nome = "Minha vida de menina", autor = "Helena Morley")
-    val memoriasPostumas = Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis")
+    val meusLivros: MutableList<Livro> = mutableListOf(
+        Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
+        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942),
+        Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
+        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865)
+    )
+    println(meusLivros)
 
-    val meusLivros = mutableListOf(grandSertao, minhaVida, memoriasPostumas)
-
-    println("Livros: $meusLivros")
-
-    meusLivros.add(Livro(nome = "Sagarana", autor = "João Guimarães Rosa"))
+    meusLivros.add(Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946))
 
     println()
-    println(meusLivros.joinToString(separator = "\n") { " - ${it.nome} por ${it.autor}" })
+    println(meusLivros.joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
 
-    val livrosDoGuimaraesRosa = meusLivros.filter { it.autor == "João Guimarães Rosa" }.toList()
+    val meusLivrosComFiltro = meusLivros
+        .filter { it.autor.startsWith("J") }
+        .sortedBy { it.anoPublicacao }
+        .map { it.nome }
+
     println()
-    println(livrosDoGuimaraesRosa.joinToString { it.nome })
+    println(meusLivrosComFiltro)
+
+    val meusLivrosComNulls: MutableList<Livro?> = mutableListOf(
+        Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
+        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942),
+        null,
+        Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
+        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865),
+        null,
+        Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946)
+    )
+
+    println()
+    println(meusLivrosComNulls.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+
+    println()
+    println(meusLivrosComNulls.filter{ it != null }.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+
+    val nomes = meusLivrosComNulls
+        .filter { it != null }
+        .filter { it?.autor?.startsWith("J") ?: false }
+        .sortedBy { it?.anoPublicacao }
+        .map { it?.nome }
+
+    println()
+    println(nomes)
+
+    val nomesSemNulos = meusLivrosComNulls
+        .filterNotNull()
+        .filter { it.autor.startsWith("J") }
+        .sortedBy { it.anoPublicacao }
+        .map { it.nome }
+
+    println()
+    println(nomesSemNulos)
+
 }

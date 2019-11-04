@@ -47,6 +47,12 @@ fun main() {
     println()
     println(nomes)
 
+    meusLivrosComNulls
+        .filter { it != null }
+        .filter { it!!.autor.startsWith("J") }
+        .sortedBy { it!!.anoPublicacao }
+        .map { it!!.nome }
+
     val nomesSemNulos = meusLivrosComNulls
         .filterNotNull()
         .filter { it.autor.startsWith("J") }
@@ -56,4 +62,14 @@ fun main() {
     println()
     println(nomesSemNulos)
 
+    println()
+    println(meusLivrosComNulls.autoresOrdenados())
+}
+
+fun Collection<Livro?>.autoresOrdenados(): List<String> {
+    return this
+        .filterNotNull()
+        .map { it.autor }
+        .distinct()
+        .sorted()
 }

@@ -1,34 +1,37 @@
 package br.com.alura.kotlin.collection.list
 
 fun main() {
-    // Criando listas mutáveis
+    val livros = mutableListOf(
+        Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
+        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942, editora = "Editora A"),
+        Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
+        Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946),
+        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865, editora = "Editora B"),
+        Livro(nome = "Vidas Secas", autor = "Graciliano Ramos", anoPublicacao = 1938, editora = "Editora A"),
+        Livro(nome = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"),
+        Livro(nome = "O Cortiço", autor = "Aluísio Azevedo", anoPublicacao = 1890, editora = "Editora B")
+    )
 
-    val autores = mutableListOf("João", "Helena", "Joaquim") // Tipo implícito: MutableList<String>
+    val prateleira = Prateleira(genero = "Literatura", livros = livros)
 
-    println(autores)
+    println(prateleira.livrosOrdenadosPorAutor())
+    println(prateleira.livrosOrdenadosPorAnoPublicacao())
 
-    // Adicionando elementos
+    val porAutor = prateleira.livrosOrdenadosPorAutor()
+    val porAnoPublicacao = prateleira.livrosOrdenadosPorAnoPublicacao()
 
-    autores.add("Euclides")
+    println()
+    println(porAutor)
+    println(porAnoPublicacao)
 
-    println(autores)
+}
 
-    autores.addAll(listOf("João", "Joaquim"))
+private fun Prateleira.livrosOrdenadosPorAutor(): List<Livro> {
+    this.livros.sortBy { it.autor }
+    return this.livros
+}
 
-    println(autores)
-
-    // Removendo elementos
-
-    autores.removeAt(0)
-
-    println(autores)
-
-    autores.remove("Joaquim")
-
-    println(autores)
-
-    autores.removeAll { it.startsWith("J") }
-
-    println(autores)
-
+private fun Prateleira.livrosOrdenadosPorAnoPublicacao(): List<Livro> {
+    this.livros.sortBy { it.anoPublicacao }
+    return this.livros
 }

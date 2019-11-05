@@ -3,9 +3,9 @@ package br.com.alura.kotlin.collection.list
 fun main() {
     val meusLivros: MutableList<Livro> = mutableListOf(
         Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
-        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942),
+        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942, editora = "Editora A"),
         Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
-        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865)
+        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865, editora = "Editora B")
     )
     println(meusLivros)
 
@@ -49,20 +49,24 @@ fun main() {
     println()
     println(nomesComFilterNotNull)
 
-    println()
-    println(meusLivrosComNulls.autoresOrdenados())
-
-    meusLivrosComNulls.add(Livro(nome = "Vidas Secas", autor = "Graciliano Ramos", anoPublicacao = 1938, editora = "Editora A"))
-    meusLivrosComNulls.add(Livro(nome = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"))
-    meusLivrosComNulls.add(Livro(nome = "O Cortiço", autor = "Aluísio Azevedo", anoPublicacao = 1890, editora = "Editora B"))
+    meusLivrosComNulls.addAll(
+            listOf(
+                Livro(nome = "Vidas Secas", autor = "Graciliano Ramos", anoPublicacao = 1938, editora = "Editora A"),
+                Livro(nome = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"),
+                Livro(nome = "O Cortiço", autor = "Aluísio Azevedo", anoPublicacao = 1890, editora = "Editora B")
+            )
+    )
 
     println()
     meusLivrosComNulls
             .filterNotNull()
-            .groupBy { it.editora }
-            .forEach { (editora: String?, livros: List<Livro>) ->
+            .groupBy { it.editora ?: "Editora X" }
+            .forEach { (editora: String, livros: List<Livro>) ->
                 println("$editora: ${livros.joinToString { it.nome }}")
             }
+
+    println()
+    println(meusLivrosComNulls.autoresOrdenados())
 
 }
 

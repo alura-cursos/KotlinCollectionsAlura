@@ -1,47 +1,27 @@
 package br.com.alura.kotlin.collection.list
 
 fun main() {
-    // Criando listas
 
-    val autores = listOf("João", "Helena", "Joaquim") // Tipo implícito: List<String>
+    val livros = getLivros()
 
-    val nomesCompletos: List<String> = listOf(
-            "João Guimarães Rosa",
-            "Helena Morley",
-            "Joaquim Maria Machado de Assis"
-    )
+    val prateleira = Prateleira(genero = "Literatura", livros = livros)
 
-    val coisas = listOf(3, "Casa", 0.23) // Tipo implícito: List<Any>
+    println(prateleira.livrosOrdenadosPorAutor())
+    println(prateleira.livrosOrdenadosPorAnoPublicacao())
 
-    // Acessando elementos da lista
+    val porAutor = prateleira.livrosOrdenadosPorAutor()
+    val porAnoPublicacao = prateleira.livrosOrdenadosPorAnoPublicacao()
 
-    println(autores.get(0))
+    println()
+    println(porAutor)
+    println(porAnoPublicacao)
 
-    println(autores[0])
+}
 
-    println(autores.first())
+private fun Prateleira.livrosOrdenadosPorAutor(): List<Livro> {
+    return this.livros.sortedBy { it.autor }
+}
 
-    println(autores[1])
-
-    println(autores[2])
-
-    println(autores.last())
-
-    // Percorrendo a lista
-
-    for(autor in autores) {
-        println(autor)
-    }
-
-    autores.forEach { println(it) }
-
-    autores.forEach { autor ->
-        val nomeEmLetrasMaiusculas = autor.toUpperCase()
-        println(nomeEmLetrasMaiusculas)
-    }
-
-    // Obtendo sublista
-
-    val subLista = autores.subList(fromIndex = 1, toIndex = 3)
-    println(subLista)
+private fun Prateleira.livrosOrdenadosPorAnoPublicacao(): List<Livro> {
+    return this.livros.sortedBy { it.anoPublicacao }
 }

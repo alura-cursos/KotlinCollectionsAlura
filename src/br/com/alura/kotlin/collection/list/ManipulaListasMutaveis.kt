@@ -2,7 +2,7 @@ package br.com.alura.kotlin.collection.list
 
 fun main() {
 
-    val prateleira = PrateleiraMutavel(genero = "Literatura", livros = getLivros())
+    val prateleira = PrateleiraMutavel(genero = "Literatura", livros = listaDeLivros())
 
     println(prateleira.livrosOrdenadosPorAutor())
     println(prateleira.livrosOrdenadosPorAnoPublicacao())

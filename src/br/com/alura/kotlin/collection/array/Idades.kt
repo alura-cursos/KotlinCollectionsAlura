@@ -2,7 +2,16 @@ package br.com.alura.kotlin.collection.array
 
 fun main() {
     val idades = intArrayOf(10, 12, 18, 33, 40, 67)
-    println("Idades: ${idades.joinToString(prefix = "[", postfix = "]")}")
+
+    print("Idades: [")
+    for(i in idades.indices) {
+        print(idades[i])
+        if(i < idades.lastIndex)
+            print(", ")
+    }
+    println("]")
+
+    println("Idades: ${idades.contentToString()}")
 
     println("Maior idade: ${idades.max()}")
 

@@ -11,22 +11,19 @@ fun main() {
 
     meusLivros.add(Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946))
 
-    println()
-    println(meusLivros.joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
+    println("\n" + meusLivros.joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
 
     val meusLivrosComFiltro = meusLivros
         .filter { it.autor.startsWith("J") }
         .sortedBy { it.anoPublicacao }
         .map { it.nome }
 
-    println()
-    println(meusLivrosComFiltro)
+    println("\n" + meusLivrosComFiltro)
 
     val meusLivrosComNulos = mutableListOf<Livro?>(null, null)
     meusLivrosComNulos.addAll(meusLivros)
 
-    println()
-    println(meusLivrosComNulos.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+    println("\n" + meusLivrosComNulos.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
 
     println()
     println(meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
@@ -37,8 +34,7 @@ fun main() {
         .sortedBy { it!!.anoPublicacao }
         .map { it!!.nome }
 
-    println()
-    println(nomesComFilter)
+    println("\n$nomesComFilter")
 
     val nomesComFilterNotNull = meusLivrosComNulos
         .filterNotNull()
@@ -46,8 +42,7 @@ fun main() {
         .sortedBy { it.anoPublicacao }
         .map { it.nome }
 
-    println()
-    println(nomesComFilterNotNull)
+    println("\n" + nomesComFilterNotNull)
 
     meusLivrosComNulos.addAll(
             listOf(
@@ -65,8 +60,7 @@ fun main() {
                 println("$editora: ${livros.joinToString { it.nome }}")
             }
 
-    println()
-    println(meusLivrosComNulos.autoresOrdenados())
+    println("\n" + meusLivrosComNulos.autoresOrdenados())
 
 }
 

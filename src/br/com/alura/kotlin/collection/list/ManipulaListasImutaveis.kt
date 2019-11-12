@@ -7,8 +7,8 @@ fun main() {
     println(prateleira.livrosOrdenadosPorAutor())
     println(prateleira.livrosOrdenadosPorAnoPublicacao())
 
-    val porAutor = prateleira.livrosOrdenadosPorAutor()
-    val porAnoPublicacao = prateleira.livrosOrdenadosPorAnoPublicacao()
+    val porAutor: List<Livro> = prateleira.livrosOrdenadosPorAutor()
+    val porAnoPublicacao: List<Livro> = prateleira.livrosOrdenadosPorAnoPublicacao()
 
     println()
     println(porAutor)

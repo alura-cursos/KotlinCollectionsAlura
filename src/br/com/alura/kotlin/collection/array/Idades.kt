@@ -15,6 +15,8 @@ fun main() {
 
     println("Maior idade: ${idades.max()}")
 
+    println("Menor idade: ${idades.min()}")
+
     val mediaIdades = idades.average()
     println("Média das idades: $mediaIdades")
 

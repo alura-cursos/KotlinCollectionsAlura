@@ -51,13 +51,21 @@ fun main() {
         println("R$ $valorFormatado")
     }
 
-    var maiorIdade = 0
+    var maiorIdade = Int.MIN_VALUE
     for(idade in idades) {
         if(maiorIdade < idade) {
             maiorIdade = idade
         }
     }
     println("Maior idade: $maiorIdade")
+
+    var menorIdade = Int.MAX_VALUE
+    idades.forEach {
+        if (menorIdade > it) {
+            menorIdade = it
+        }
+    }
+    println("Menor idade: $menorIdade")
 
     // Alterando arrays
 
@@ -74,4 +82,9 @@ fun main() {
         salarios[i] = salarios[i] * aumento
     }
     println("Salários após aumento: ${salarios.joinToString()}")
+
+    salarios.forEachIndexed { i, salario ->
+        salarios[i] = salario * aumento
+    }
+    println("Salários após segundo aumento: ${salarios.joinToString()}")
 }

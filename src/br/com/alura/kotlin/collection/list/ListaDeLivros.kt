@@ -22,16 +22,16 @@ fun main() {
     println()
     println(meusLivrosComFiltro)
 
-    val meusLivrosComNulls = mutableListOf<Livro?>(null, null)
-    meusLivrosComNulls.addAll(meusLivros)
+    val meusLivrosComNulos = mutableListOf<Livro?>(null, null)
+    meusLivrosComNulos.addAll(meusLivros)
 
     println()
-    println(meusLivrosComNulls.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+    println(meusLivrosComNulos.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
 
     println()
-    println(meusLivrosComNulls.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
+    println(meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
 
-    val nomesComFilter = meusLivrosComNulls
+    val nomesComFilter = meusLivrosComNulos
         .filter { it != null }
         .filter { it!!.autor.startsWith("J") }
         .sortedBy { it!!.anoPublicacao }
@@ -40,7 +40,7 @@ fun main() {
     println()
     println(nomesComFilter)
 
-    val nomesComFilterNotNull = meusLivrosComNulls
+    val nomesComFilterNotNull = meusLivrosComNulos
         .filterNotNull()
         .filter { it.autor.startsWith("J") }
         .sortedBy { it.anoPublicacao }
@@ -49,7 +49,7 @@ fun main() {
     println()
     println(nomesComFilterNotNull)
 
-    meusLivrosComNulls.addAll(
+    meusLivrosComNulos.addAll(
             listOf(
                 Livro(nome = "Vidas Secas", autor = "Graciliano Ramos", anoPublicacao = 1938, editora = "Editora A"),
                 Livro(nome = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"),
@@ -58,7 +58,7 @@ fun main() {
     )
 
     println()
-    meusLivrosComNulls
+    meusLivrosComNulos
             .filterNotNull()
             .groupBy { it.editora ?: "Editora X" }
             .forEach { (editora: String, livros: List<Livro>) ->
@@ -66,7 +66,7 @@ fun main() {
             }
 
     println()
-    println(meusLivrosComNulls.autoresOrdenados())
+    println(meusLivrosComNulos.autoresOrdenados())
 
 }
 

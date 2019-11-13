@@ -24,7 +24,6 @@ fun main() {
                 .forEach(::print)
     }
 
-    println()
-    println("Tempo List: $tempoList")
+    println("\nTempo List: $tempoList")
     println("Tempo Sequence: $tempoSequence")
 }

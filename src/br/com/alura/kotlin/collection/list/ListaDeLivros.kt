@@ -45,11 +45,23 @@ fun main() {
     println("\n" + nomesComFilterNotNull)
 
     meusLivrosComNulos.addAll(
-            listOf(
-                Livro(nome = "Vidas Secas", autor = "Graciliano Ramos", anoPublicacao = 1938, editora = "Editora A"),
-                Livro(nome = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"),
-                Livro(nome = "O Cortiço", autor = "Aluísio Azevedo", anoPublicacao = 1890, editora = "Editora B")
-            )
+        listOf(
+            Livro(
+                nome = "Vidas Secas",
+                autor = "Graciliano Ramos",
+                anoPublicacao = 1938,
+                editora = "Editora A"),
+            Livro(
+                nome = "Mayombe",
+                autor = "Pepetela",
+                anoPublicacao = 1979,
+                editora = "Editora B"),
+            Livro(
+                nome = "O Cortiço",
+                autor = "Aluísio Azevedo",
+                anoPublicacao = 1890,
+                editora = "Editora B")
+        )
     )
 
     println()
@@ -64,10 +76,8 @@ fun main() {
 
 }
 
-fun Collection<Livro?>.autoresOrdenados(): List<String> {
-    return this
-        .filterNotNull()
+fun Collection<Livro?>.autoresOrdenados(): List<String> =
+    this.filterNotNull()
         .map { it.autor }
         .distinct()
         .sorted()
-}

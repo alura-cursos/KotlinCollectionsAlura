@@ -1,18 +1,22 @@
 package br.com.alura.kotlin.collection.sets
 
 
-class SemEquals(val atributo: Int)
-
-class ComEquals(val atributo: Int) {
-    override fun equals(other: Any?) = other is ComEquals && other.atributo == atributo
+class SemEquals(val propriedade: Int) {
+    override fun toString() = propriedade.toString()
 }
 
-class ComEqualsEHashCode(val atributo: Int) {
-    override fun equals(other: Any?) = other is ComEqualsEHashCode && other.atributo == atributo
-    override fun hashCode() = atributo
+class ComEquals(val propriedade: Int) {
+    override fun equals(other: Any?) = other is ComEquals && other.propriedade == propriedade
+    override fun toString() = propriedade.toString()
 }
 
-data class DataClass(val atributo: Int)
+class ComEqualsEHashCode(val propriedade: Int) {
+    override fun equals(other: Any?) = other is ComEqualsEHashCode && other.propriedade == propriedade
+    override fun hashCode() = propriedade
+    override fun toString() = propriedade.toString()
+}
+
+data class DataClass(val propriedade: Int) 
 
 fun main() {
     val conjuntoSemEquals = mutableSetOf(
@@ -21,7 +25,7 @@ fun main() {
             SemEquals(42),
             SemEquals(42)
     )
-    println(conjuntoSemEquals.size)
+    println("Conjunto: [${conjuntoSemEquals.joinToString()}] - Tamanho: ${conjuntoSemEquals.size}")
 
     val conjuntoComEquals = mutableSetOf(
             ComEquals(10),
@@ -29,7 +33,7 @@ fun main() {
             ComEquals(42),
             ComEquals(42)
     )
-    println(conjuntoComEquals.size)
+    println("Conjunto: [${conjuntoComEquals.joinToString()}] - Tamanho: ${conjuntoComEquals.size}")
 
     val conjuntoComEqualsEHashCode = mutableSetOf(
             ComEqualsEHashCode(10),
@@ -37,7 +41,7 @@ fun main() {
             ComEqualsEHashCode(42),
             ComEqualsEHashCode(42)
     )
-    println(conjuntoComEqualsEHashCode.size)
+    println("Conjunto: [${conjuntoComEqualsEHashCode.joinToString()}] - Tamanho: ${conjuntoComEqualsEHashCode.size}")
 
     val conjuntoDataClass = mutableSetOf(
             DataClass(10),
@@ -45,5 +49,5 @@ fun main() {
             DataClass(42),
             DataClass(42)
     )
-    println(conjuntoDataClass.size)
+    println("Conjunto: [${conjuntoDataClass.joinToString()}] - Tamanho: ${conjuntoDataClass.size}")
 }

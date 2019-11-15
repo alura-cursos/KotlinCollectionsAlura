@@ -28,21 +28,21 @@ fun main() {
     println()
     println(meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
 
-    val nomesComFilter = meusLivrosComNulos
+    val nomesComFiltroSimples = meusLivrosComNulos
         .filter { it != null }
         .filter { it!!.autor.startsWith("J") }
         .sortedBy { it!!.anoPublicacao }
         .map { it!!.nome }
 
-    println("\n$nomesComFilter")
+    println("\n$nomesComFiltroSimples")
 
-    val nomesComFilterNotNull = meusLivrosComNulos
+    val nomesComFiltroDeNulos = meusLivrosComNulos
         .filterNotNull()
         .filter { it.autor.startsWith("J") }
         .sortedBy { it.anoPublicacao }
         .map { it.nome }
 
-    println("\n" + nomesComFilterNotNull)
+    println("\n" + nomesComFiltroDeNulos)
 
     meusLivrosComNulos.addAll(
         listOf(

@@ -3,8 +3,8 @@ package br.com.alura.kotlin.collection.list
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    val listaGrandeLivros = List(2000) {
-        Livro(nome = "Livro $it", autor = "Autor", anoPublicacao = it.toLong(), editora = "Editora $it")
+    val listaGrandeLivros = List(10000) {
+        Livro(nome = "Livro $it", autor = "Autor $it", anoPublicacao = it.toLong(), editora = "Editora $it")
     }
 
     val tempoList = measureTimeMillis {
@@ -12,7 +12,7 @@ fun main() {
                 .filter { it.anoPublicacao > 1000 }
                 .sortedBy { it.autor }
                 .map { "Título: ${it.nome}" }
-                .forEach(::print)
+                .find { it.contains("1001") }
     }
 
     val tempoSequence = measureTimeMillis {
@@ -21,9 +21,11 @@ fun main() {
                 .filter { it.anoPublicacao > 1000 }
                 .sortedBy { it.autor }
                 .map { "Título: ${it.nome}" }
-                .forEach(::print)
+                .find { it.contains("1001") }
     }
 
-    println("\nTempo List: $tempoList")
+    println("Tempo List: $tempoList")
     println("Tempo Sequence: $tempoSequence")
+
+
 }

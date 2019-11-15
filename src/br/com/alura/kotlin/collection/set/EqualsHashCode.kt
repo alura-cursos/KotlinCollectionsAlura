@@ -1,4 +1,4 @@
-package br.com.alura.kotlin.collection.sets
+package br.com.alura.kotlin.collection.set
 
 
 class SemEquals(val propriedade: Int) {

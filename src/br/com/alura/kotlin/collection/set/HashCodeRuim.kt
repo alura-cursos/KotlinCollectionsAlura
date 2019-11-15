@@ -1,4 +1,4 @@
-package br.com.alura.kotlin.collection.sets
+package br.com.alura.kotlin.collection.set
 
 class HashCodeBom(val propriedade: Int) {
     companion object {

@@ -1,4 +1,4 @@
-package br.com.alura.kotlin.collection.sets
+package br.com.alura.kotlin.collection.set
 
 data class Funcionario(val nome: String, var cargo: String)
 

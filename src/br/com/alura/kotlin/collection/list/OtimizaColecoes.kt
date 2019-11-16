@@ -50,4 +50,8 @@ fun main() {
 
     println(livroMaisRecente == livroMaisRecenteOtimizado)
 
+
+    val tamanho = listaDeLivros().filter { it.autor == "João Guimarães Rosa" }.size
+    val tamanhoOtimizado = listaDeLivros().filter { it.autor == "João Guimarães Rosa" }.count()
+    println(tamanho == tamanhoOtimizado)
 }

@@ -14,6 +14,19 @@ fun main() {
     println(porAutor)
     println(porAnoPublicacao)
 
+    val livroNovo = Livro(nome = "Dom Casmurro", autor = "Machado de Assis", anoPublicacao = 1899)
+
+    val prateleiraComLivroNovo = prateleira.copy(livros = prateleira.livros + livroNovo)
+
+    println("Prateleira inicial: ${prateleira.livros.size}")
+    println("Prateleira com livro novo: ${prateleiraComLivroNovo.livros.size}")
+
+    val prateleiraSemLivroNovo = prateleiraComLivroNovo.copy(livros = prateleiraComLivroNovo.livros - livroNovo)
+
+    println("Prateleira sem livro novo: ${prateleiraSemLivroNovo.livros.size}")
+
+    println(prateleira == prateleiraSemLivroNovo)
+    println(prateleira === prateleiraSemLivroNovo)
 }
 
 private fun Prateleira.livrosOrdenadosPorAutor(): List<Livro> {

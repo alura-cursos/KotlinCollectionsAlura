@@ -38,4 +38,16 @@ fun main() {
             .find { print("F-"); it.startsWith("J") }
             .also { print("$it\n") }
 
+
+    val livroMaisRecente = listaDeLivros().filter {
+        it.anoPublicacao == listaDeLivros().maxBy(Livro::anoPublicacao)?.anoPublicacao
+    }
+    println(livroMaisRecente)
+
+    val anoPublicacaoMaisRecente = listaDeLivros().maxBy(Livro::anoPublicacao)?.anoPublicacao
+    val livroMaisRecenteOtimizado = listaDeLivros().filter { it.anoPublicacao == anoPublicacaoMaisRecente }
+    println(livroMaisRecenteOtimizado)
+
+    println(livroMaisRecente == livroMaisRecenteOtimizado)
+
 }

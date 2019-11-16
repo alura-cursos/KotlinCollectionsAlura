@@ -35,4 +35,14 @@ fun main() {
             .map { it.titulo }
 
     println(filmesDeAcaoEFiccao)
+
+    val qtdFilmes = listaDeFilmes.filter { it.genero.size > 2 }.count()
+    println(qtdFilmes)
+
+    val todosOsGeneros = listaDeFilmes
+            .flatMap { it.genero }
+            .distinct()
+            .map { it.capitalize() }
+    
+    println(todosOsGeneros)
 }

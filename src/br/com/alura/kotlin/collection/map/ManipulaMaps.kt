@@ -22,7 +22,7 @@ fun main() {
     val animal by coisas
     println(animal)
 
-    println(animal in coisas)
+    println("cachorro" in coisas)
     println("animal" in coisas)
 
     val letraEBinario = listOf('a', 'l', 'u', 'r', 'a')
@@ -30,7 +30,4 @@ fun main() {
             .toMap()
 
     println(letraEBinario)
-
-
-
 }

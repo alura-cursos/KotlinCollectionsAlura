@@ -11,22 +11,16 @@ fun main() {
 
     meusLivros.add(Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946))
 
-    println("\n" + meusLivros.joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
+    meusLivros.imprimeListaComMarcadores()
 
-    val meusLivrosComFiltro = meusLivros
-        .filter { it.autor.startsWith("J") }
-        .sortedBy { it.anoPublicacao }
-        .map { it.nome }
+    val titulos: List<String> = titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(meusLivros, "Jo")
+    println("\n $titulos")
 
-    println("\n" + meusLivrosComFiltro)
+    val meusLivrosComNulos: MutableList<Livro?> = mutableListOf(null, null, *meusLivros.toTypedArray())
 
-    val meusLivrosComNulos = mutableListOf<Livro?>(null, null)
-    meusLivrosComNulos.addAll(meusLivros)
+    meusLivrosComNulos.imprimeListaComMarcadores()
 
-    println("\n" + meusLivrosComNulos.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
-
-    println()
-    println(meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
+    println("\n" + meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
 
     val nomesComFiltroSimples = meusLivrosComNulos
         .filter { it != null }
@@ -76,8 +70,20 @@ fun main() {
 
 }
 
+fun Collection<Livro?>.imprimeListaComMarcadores() {
+    println("\n ### Lista de Livros ###")
+    println(this.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+}
+
 fun Collection<Livro?>.autoresOrdenados(): List<String> =
     this.filterNotNull()
         .map { it.autor }
         .distinct()
         .sorted()
+
+fun titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(livros: List<Livro>, prefixoAutor: String): List<String> {
+    return livros
+        .filter { it.autor.startsWith(prefixoAutor) }
+        .sortedBy { it.anoPublicacao }
+        .map { it.nome }
+}

@@ -11,18 +11,14 @@ fun main() {
     val salariosComAumento = salarios.map { it * aumento }
     println("Salários com aumento: $salariosComAumento")
 
-    val salariosComAumentoMinimo = salarios.map { salario ->
-        if (salario < 5000) {
-            salario + 500
-        } else {
-            salario * aumento
-        }
+    val salariosComAumentoRelativo = salarios.map { salario ->
+        calculaAumentoRelativo(salario, aumento)
     }
-    println("Salários com aumento mínimo: $salariosComAumentoMinimo")
+    println("Salários com aumento relativo: $salariosComAumentoRelativo")
 
     val gastoInicial = salarios.sum()
     val meses = 6
-    val somaSalariosComAumentoXMeses = salariosComAumentoMinimo.fold(gastoInicial) { acumulador, salario ->
+    val somaSalariosComAumentoXMeses = salariosComAumentoRelativo.fold(gastoInicial) { acumulador, salario ->
         acumulador + (salario * meses)
     }
     println("Soma total de salários com aumento: $somaSalariosComAumentoXMeses")
@@ -37,3 +33,10 @@ fun main() {
     println("Média dos salários acima de R$ 2000,00 excluindo o menor valor: $mediaFiltrada")
 
 }
+
+private fun calculaAumentoRelativo(salario: Double, aumento: Double): Double =
+    if (salario < 5000) {
+        salario + 500
+    } else {
+        salario * aumento
+    }

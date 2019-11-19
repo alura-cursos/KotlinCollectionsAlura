@@ -7,6 +7,10 @@ fun main() {
     val somaDosSalarios = salarios.sum()
     println("Soma total de salários: $somaDosSalarios")
 
+    println("Maior salário entre os três primeiros: ${salarios.take(3).max()}")
+
+    println("Menor salário entre os três últimos: ${salarios.takeLast(3).min()}")
+
     val aumento = 1.1
     val salariosComAumento = salarios.map { it * aumento }
     println("Salários com aumento: $salariosComAumento")

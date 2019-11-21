@@ -14,65 +14,57 @@ fun main() {
     meusLivros.imprimeListaComMarcadores()
 
     val titulos: List<String> = titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(meusLivros, "Jo")
+
     println("\n $titulos")
 
     val meusLivrosComNulos: MutableList<Livro?> = mutableListOf(null, null, *meusLivros.toTypedArray())
 
     meusLivrosComNulos.imprimeListaComMarcadores()
 
-    println("\n" + meusLivrosComNulos.filter { it != null }.joinToString(separator = "\n") { " - ${it!!.nome} de ${it.autor}" })
+    val titulosFiltrados = titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(meusLivrosComNulos, "Jo")
 
-    val nomesComFiltroSimples = meusLivrosComNulos
-        .filter { it != null }
-        .filter { it!!.autor.startsWith("J") }
-        .sortedBy { it!!.anoPublicacao }
-        .map { it!!.nome }
+    println("\n" + titulosFiltrados)
 
-    println("\n$nomesComFiltroSimples")
+    meusLivrosComNulos.addAll( livrosNovos() )
 
-    val nomesComFiltroDeNulos = meusLivrosComNulos
-        .filterNotNull()
-        .filter { it.autor.startsWith("J") }
-        .sortedBy { it.anoPublicacao }
-        .map { it.nome }
-
-    println("\n" + nomesComFiltroDeNulos)
-
-    meusLivrosComNulos.addAll(
-        listOf(
-            Livro(
-                nome = "Vidas Secas",
-                autor = "Graciliano Ramos",
-                anoPublicacao = 1938,
-                editora = "Editora A"),
-            Livro(
-                nome = "Mayombe",
-                autor = "Pepetela",
-                anoPublicacao = 1979,
-                editora = "Editora B"),
-            Livro(
-                nome = "O Cortiço",
-                autor = "Aluísio Azevedo",
-                anoPublicacao = 1890,
-                editora = "Editora B")
-        )
-    )
-
-    println()
-    meusLivrosComNulos
-            .filterNotNull()
-            .groupBy { it.editora ?: "Editora X" }
-            .forEach { (editora: String, livros: List<Livro>) ->
-                println("$editora: ${livros.joinToString { it.nome }}")
-            }
+    meusLivrosComNulos.imprimeLivrosPorEditora()
 
     println("\n" + meusLivrosComNulos.autoresOrdenados())
 
 }
 
+private fun livrosNovos(): List<Livro> =
+    listOf(
+            Livro(
+                    nome = "Vidas Secas",
+                    autor = "Graciliano Ramos",
+                    anoPublicacao = 1938,
+                    editora = "Editora A"),
+            Livro(
+                    nome = "Mayombe",
+                    autor = "Pepetela",
+                    anoPublicacao = 1979,
+                    editora = "Editora B"),
+            Livro(
+                    nome = "O Cortiço",
+                    autor = "Aluísio Azevedo",
+                    anoPublicacao = 1890,
+                    editora = "Editora B")
+    )
+
+
 fun Collection<Livro?>.imprimeListaComMarcadores() {
     println("\n ### Lista de Livros ###")
-    println(this.joinToString(separator = "\n") { " - ${it?.nome} de ${it?.autor}" })
+    println(this.filterNotNull().joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
+}
+
+fun Collection<Livro?>.imprimeLivrosPorEditora() {
+    println("\n ### Lista de Livros Por Editora ###")
+    this.filterNotNull()
+        .groupBy { it.editora ?: "Editora X" }
+        .forEach { (editora: String, livros: List<Livro>) ->
+            println(" $editora: ${livros.joinToString { it.nome }}")
+        }
 }
 
 fun Collection<Livro?>.autoresOrdenados(): List<String> =
@@ -81,8 +73,9 @@ fun Collection<Livro?>.autoresOrdenados(): List<String> =
         .distinct()
         .sorted()
 
-fun titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(livros: List<Livro>, prefixoAutor: String): List<String> {
+fun titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(livros: Collection<Livro?>, prefixoAutor: String): List<String> {
     return livros
+        .filterNotNull()
         .filter { it.autor.startsWith(prefixoAutor) }
         .sortedBy { it.anoPublicacao }
         .map { it.nome }

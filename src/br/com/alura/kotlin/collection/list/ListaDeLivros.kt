@@ -35,23 +35,22 @@ fun main() {
 
 private fun livrosNovos(): List<Livro> =
     listOf(
-            Livro(
-                    nome = "Vidas Secas",
-                    autor = "Graciliano Ramos",
-                    anoPublicacao = 1938,
-                    editora = "Editora A"),
-            Livro(
-                    nome = "Mayombe",
-                    autor = "Pepetela",
-                    anoPublicacao = 1979,
-                    editora = "Editora B"),
-            Livro(
-                    nome = "O Cortiço",
-                    autor = "Aluísio Azevedo",
-                    anoPublicacao = 1890,
-                    editora = "Editora B")
+        Livro(
+            nome = "Vidas Secas",
+            autor = "Graciliano Ramos",
+            anoPublicacao = 1938,
+            editora = "Editora A"),
+        Livro(
+            nome = "Mayombe",
+            autor = "Pepetela",
+            anoPublicacao = 1979,
+            editora = "Editora B"),
+        Livro(
+            nome = "O Cortiço",
+            autor = "Aluísio Azevedo",
+            anoPublicacao = 1890,
+            editora = "Editora B")
     )
-
 
 fun Collection<Livro?>.imprimeListaComMarcadores() {
     println("\n ### Lista de Livros ###")

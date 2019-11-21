@@ -14,7 +14,7 @@ fun main() {
     println(porAutor)
     println(porAnoPublicacao)
 
-    val livroNovo = Livro(nome = "Dom Casmurro", autor = "Machado de Assis", anoPublicacao = 1899)
+    val livroNovo = Livro(titulo = "Dom Casmurro", autor = "Machado de Assis", anoPublicacao = 1899)
 
     val prateleiraComLivroNovo = prateleira.copy(livros = prateleira.livros + livroNovo)
 

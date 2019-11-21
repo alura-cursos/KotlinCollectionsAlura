@@ -4,7 +4,7 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     val listaGrandeLivros = List(10000) {
-        Livro(nome = "Livro $it", autor = "Autor $it", anoPublicacao = it.toLong(), editora = "Editora $it")
+        Livro(titulo = "Livro $it", autor = "Autor $it", anoPublicacao = it.toLong(), editora = "Editora $it")
     }
 
     val tempoList = measureTimeMillis {

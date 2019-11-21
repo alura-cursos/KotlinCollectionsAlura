@@ -2,14 +2,14 @@ package br.com.alura.kotlin.collection.list
 
 fun main() {
     val meusLivros: MutableList<Livro> = mutableListOf(
-        Livro(nome = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
-        Livro(nome = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942, editora = "Editora A"),
-        Livro(nome = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
-        Livro(nome = "Iracema", autor = "José de Alencar", anoPublicacao = 1865, editora = "Editora B")
+        Livro(titulo = "Grande Sertão: Veredas", autor = "João Guimarães Rosa", anoPublicacao = 1956),
+        Livro(titulo = "Minha vida de menina", autor = "Helena Morley", anoPublicacao = 1942, editora = "Editora A"),
+        Livro(titulo = "Memórias Póstumas de Brás Cubas", autor = "Machado de Assis", anoPublicacao = 1881),
+        Livro(titulo = "Iracema", autor = "José de Alencar", anoPublicacao = 1865, editora = "Editora B")
     )
     println(meusLivros)
 
-    meusLivros.add(Livro(nome = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946))
+    meusLivros.add(Livro(titulo = "Sagarana", autor = "João Guimarães Rosa", anoPublicacao = 1946))
 
     meusLivros.imprimeListaComMarcadores()
 
@@ -36,17 +36,17 @@ fun main() {
 private fun livrosNovos(): List<Livro> =
     listOf(
         Livro(
-            nome = "Vidas Secas",
+            titulo = "Vidas Secas",
             autor = "Graciliano Ramos",
             anoPublicacao = 1938,
             editora = "Editora A"),
         Livro(
-            nome = "Mayombe",
+            titulo = "Mayombe",
             autor = "Pepetela",
             anoPublicacao = 1979,
             editora = "Editora B"),
         Livro(
-            nome = "O Cortiço",
+            titulo = "O Cortiço",
             autor = "Aluísio Azevedo",
             anoPublicacao = 1890,
             editora = "Editora B")
@@ -54,7 +54,7 @@ private fun livrosNovos(): List<Livro> =
 
 fun Collection<Livro?>.imprimeListaComMarcadores() {
     println("\n ### Lista de Livros ###")
-    println(this.filterNotNull().joinToString(separator = "\n") { " - ${it.nome} de ${it.autor}" })
+    println(this.filterNotNull().joinToString(separator = "\n") { " - ${it.titulo} de ${it.autor}" })
 }
 
 fun Collection<Livro?>.imprimeLivrosPorEditora() {
@@ -62,7 +62,7 @@ fun Collection<Livro?>.imprimeLivrosPorEditora() {
     this.filterNotNull()
         .groupBy { it.editora ?: "Editora X" }
         .forEach { (editora: String, livros: List<Livro>) ->
-            println(" $editora: ${livros.joinToString { it.nome }}")
+            println(" $editora: ${livros.joinToString { it.titulo }}")
         }
 }
 
@@ -77,5 +77,5 @@ fun titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(livros: Collection<Livro?>
         .filterNotNull()
         .filter { it.autor.startsWith(prefixoAutor) }
         .sortedBy { it.anoPublicacao }
-        .map { it.nome }
+        .map { it.titulo }
 }

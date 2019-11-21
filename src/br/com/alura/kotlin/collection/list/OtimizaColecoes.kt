@@ -3,8 +3,13 @@ package br.com.alura.kotlin.collection.list
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    val listaGrandeLivros = List(10000) {
-        Livro(titulo = "Livro $it", autor = "Autor $it", anoPublicacao = it.toLong(), editora = "Editora $it")
+    val listaGrandeLivros = List(100000) { indice ->
+        Livro(
+            titulo = "Livro $indice",
+            autor = "Autor $indice",
+            anoPublicacao = indice.toLong(),
+            editora = "Editora $indice"
+        )
     }
 
     val tempoList = measureTimeMillis {

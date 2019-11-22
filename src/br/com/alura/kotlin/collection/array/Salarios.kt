@@ -4,7 +4,7 @@ fun main() {
     val salarios = doubleArrayOf(1500.55, 9100.0, 2990.99, 8500.0, 10000.0)
     println("Salários: ${salarios.joinToString(prefix = "[", postfix = "]")}")
 
-    val somaDosSalarios = salarios.sum()
+    val somaDosSalarios: Double = salarios.sum()
     println("Soma total de salários: $somaDosSalarios")
 
     println("Maior salário entre os três primeiros: ${salarios.take(3).max()}")
@@ -22,10 +22,8 @@ fun main() {
 
     val gastoInicial = salarios.sum()
     val meses = 6
-    val somaSalariosComAumentoXMeses = salariosComAumentoRelativo.fold(gastoInicial) { acumulador, salario ->
-        acumulador + (salario * meses)
-    }
-    println("Soma total de salários com aumento: $somaSalariosComAumentoXMeses")
+    val somatoriaComAumento = somaSalariosComAumentoXMeses(salarios, gastoInicial, meses)
+    println("Soma total de salários com aumento: $somatoriaComAumento")
 
     val salariosEmOrdem = salarios.sorted()
     println("Do menor para o maior: $salariosEmOrdem")
@@ -33,9 +31,15 @@ fun main() {
     val menorValorRemovido = salarios.sorted().drop(1)
     println("Menor valor excluído: $menorValorRemovido")
 
-    val mediaFiltrada = salarios.filter { it > 2000 }.sorted().drop(1).average()
+    val mediaFiltrada: Double = salarios.filter { it > 2000 }.sorted().drop(1).average()
     println("Média dos salários acima de R$ 2000,00 excluindo o menor valor: $mediaFiltrada")
 
+}
+
+private fun somaSalariosComAumentoXMeses(salarios: DoubleArray, gastoInicial: Double, meses: Int): Double {
+    return salarios.fold(gastoInicial) { acumulador, salario ->
+        acumulador + (salario * meses)
+    }
 }
 
 private fun calculaAumentoRelativo(salario: Double, aumento: Double): Double =

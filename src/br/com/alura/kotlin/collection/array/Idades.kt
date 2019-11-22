@@ -1,15 +1,9 @@
 package br.com.alura.kotlin.collection.array
 
 fun main() {
-    val idades = intArrayOf(10, 12, 18, 33, 40, 67)
+    val idades: IntArray = intArrayOf(10, 12, 18, 33, 40, 67)
 
-    print("Idades: [")
-    for(i in idades.indices) {
-        print(idades[i])
-        if(i < idades.lastIndex)
-            print(", ")
-    }
-    println("]")
+    imprimeArray(idades)
 
     println("Idades: ${idades.contentToString()}")
 
@@ -17,24 +11,34 @@ fun main() {
 
     println("Menor idade: ${idades.min()}")
 
-    val mediaIdades = idades.average()
+    val mediaIdades: Double = idades.average()
     println("Média das idades: $mediaIdades")
 
-    val todosMaiores = idades.all { it >= 18 }
+    val todosMaiores: Boolean = idades.all { it >= 18 }
     println("Todos são maiores de idade? $todosMaiores")
 
-    val existeMenor = idades.any { it < 18 }
+    val existeMenor: Boolean = idades.any { it < 18 }
     println("Existe algum menor de idade? $existeMenor")
 
-    val maiores = idades.filter { it >= 18 }
+    val maiores: List<Int> = idades.filter { it >= 18 }
     println("Maiores de idade: $maiores")
 
-    val menores = idades.filter { it < 18 }
-    println("Menores de idade: $menores")
+    val menores: IntArray = idades.filter { it < 18 }.toIntArray()
+    println("Menores de idade: ${menores.contentToString()}")
 
-    val contemQuarenta = idades.contains(40)
+    val contemQuarenta: Boolean = idades.contains(40)
     println("Existe alguem com 40 anos? $contemQuarenta")
 
-    val busca = idades.find { it == 33 }
+    val busca: Int? = idades.find { it == 33 }
     println("Idade encontrada: $busca")
+}
+
+private fun imprimeArray(idades: IntArray) {
+    val texto = StringBuilder()
+    for (i in idades.indices) {
+        texto.append(idades[i])
+        if (i < idades.lastIndex)
+            texto.append(", ")
+    }
+    println("Idades: [$texto]")
 }

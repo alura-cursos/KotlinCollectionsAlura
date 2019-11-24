@@ -54,7 +54,7 @@ fun main() {
     val maiorIdade = encontraMaiorIdade(idades)
     println("Maior idade: $maiorIdade")
 
-    valx menorIdade = encontraMenorIdade(idades)
+    val menorIdade = encontraMenorIdade(idades)
     println("Menor idade: $menorIdade")
 
     // Alterando arrays

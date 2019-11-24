@@ -25,9 +25,7 @@ fun main() {
     println("cachorro" in coisas)
     println("animal" in coisas)
 
-    val letraEBinario = listOf('a', 'l', 'u', 'r', 'a')
-            .map { it to Integer.toBinaryString(it.toInt()) }
-            .toMap()
+    val letraEBinario: Map<Char, String> = criaMapaDeLetraParaBinario()
 
     println(letraEBinario)
 
@@ -71,4 +69,10 @@ fun main() {
     println(usuarioRemovido)
     println(repositorio.carregaUsuarios())
     println(repositorio.buscaUsuario(1) ?: "não existe usuário com índice 1")
+}
+
+private fun criaMapaDeLetraParaBinario(): Map<Char, String> {
+    return listOf('a', 'l', 'u', 'r', 'a')
+        .map { it to Integer.toBinaryString(it.toInt()) }
+        .toMap()
 }

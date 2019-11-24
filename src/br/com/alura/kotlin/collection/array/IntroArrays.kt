@@ -47,24 +47,14 @@ fun main() {
 
     println()
     for(i in 0 until salarios.size) {
-        val valorFormatado = "%.2f".format(salarios[i]) // formata para duas casas decimais
-        println("R$ $valorFormatado")
+        val valorFormatado = "R$ %.2f".format(salarios[i]) // formata para duas casas decimais
+        println(valorFormatado)
     }
 
-    var maiorIdade = Int.MIN_VALUE
-    for(idade in idades) {
-        if(maiorIdade < idade) {
-            maiorIdade = idade
-        }
-    }
+    val maiorIdade = encontraMaiorIdade(idades)
     println("Maior idade: $maiorIdade")
 
-    var menorIdade = Int.MAX_VALUE
-    idades.forEach {
-        if (menorIdade > it) {
-            menorIdade = it
-        }
-    }
+    valx menorIdade = encontraMenorIdade(idades)
     println("Menor idade: $menorIdade")
 
     // Alterando arrays
@@ -87,4 +77,24 @@ fun main() {
         salarios[i] = salario * aumento
     }
     println("Salários após segundo aumento: ${salarios.joinToString()}")
+}
+
+private fun encontraMenorIdade(idades: IntArray): Int {
+    var menorIdade = Int.MAX_VALUE
+    idades.forEach {
+        if (menorIdade > it) {
+            menorIdade = it
+        }
+    }
+    return menorIdade
+}
+
+private fun encontraMaiorIdade(idades: IntArray): Int {
+    var maiorIdade = Int.MIN_VALUE
+    for (idade in idades) {
+        if (maiorIdade < idade) {
+            maiorIdade = idade
+        }
+    }
+    return maiorIdade
 }

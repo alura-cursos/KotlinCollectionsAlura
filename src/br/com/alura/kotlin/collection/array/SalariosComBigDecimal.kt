@@ -5,36 +5,27 @@ import java.math.RoundingMode
 
 fun main() {
     val salarios: Array<BigDecimal> = bigDecimalArrayDe("1500.55", "9100.00", "2990.99", "8500.00", "10000.00")
-    println("Salários: ${salarios.joinToString(prefix = "[", postfix = "]")}")
 
     val maiorSalarioDosTresPrimeiros = salarios.take(3).max()
-    println("Maior salário entre os três primeiros: $maiorSalarioDosTresPrimeiros")
 
     val menorSalarioDosTresUltimos = salarios.takeLast(3).min()
-    println("Menor salário entre os três últimos: $menorSalarioDosTresUltimos")
 
     val aumento = "1.10".toBigDecimal()
     val salariosComAumento: List<BigDecimal> = salarios.map { salario -> calculaAumento(salario, aumento) }
-    println("Salários com aumento: $salariosComAumento")
 
     val salariosComAumentoRelativo: List<BigDecimal> = salarios.map { salario ->
         calculaAumentoRelativo(salario, aumento)
     }
-    println("Salários com aumento relativo: $salariosComAumentoRelativo")
 
     val gastoInicial = salarios.soma()
     val meses = 6
     val somatoriaComAumento: BigDecimal = somaSalariosComAumentoXMeses(salarios, gastoInicial, BigDecimal(meses))
-    println("Soma total de salários com aumento: $somatoriaComAumento")
 
     val salariosEmOrdem = salarios.sorted()
-    println("Do menor para o maior: $salariosEmOrdem")
 
     val menorValorRemovido: List<BigDecimal> = ordenaSalariosERemoveOMenor(salarios)
-    println("Menor valor excluído: $menorValorRemovido")
 
     val media: BigDecimal = salarios.mediaDosValoresAcimaDe(BigDecimal(2000))
-    println("Média dos salários acima de R$ 2000,00: $media")
 
 }
 
@@ -65,7 +56,7 @@ private fun Array<BigDecimal>.mediaDosValoresAcimaDe(valorMinimo: BigDecimal): B
         .toTypedArray()
         .media()
 
-private fun Array<BigDecimal>.media(): BigDecimal {
+fun Array<BigDecimal>.media(): BigDecimal {
     val soma: BigDecimal = this.soma()
     return if (this.isEmpty()) {
         BigDecimal.ZERO

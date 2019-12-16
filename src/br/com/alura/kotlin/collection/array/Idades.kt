@@ -26,11 +26,11 @@ fun main() {
     val menores: IntArray = idades.filter { it < 18 }.toIntArray()
     println("Menores de idade: ${menores.contentToString()}")
 
-    val contemQuarenta: Boolean = idades.contains(40)
-    println("Existe alguem com 40 anos? $contemQuarenta")
+    val contemDez: Boolean = idades.contains(10)
+    println("Existe alguem com 10 anos? $contemDez")
 
-    val busca: Int? = idades.find { it == 33 }
-    println("Idade encontrada: $busca")
+    val idade: Int? = idades.find { it == 10 }
+    println("Idade encontrada: $idade")
 }
 
 private fun imprimeArray(idades: IntArray) {

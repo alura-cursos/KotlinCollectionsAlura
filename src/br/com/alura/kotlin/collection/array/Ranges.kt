@@ -1,29 +1,39 @@
 package br.com.alura.kotlin.collection.array
 
 fun main() {
-    val serie: IntRange = 1.rangeTo(10)
-    println(serie)
+    val serie: IntRange = 1..10
     for (i in serie) {
         print("$i ")
     }
 
-    val umADez: IntRange = 1..10
-    println("\n$umADez")
-    umADez.forEach { print("$it ") }
+    for (i in 1..100) {
+        if(i % 2 == 0) {
+            print("$i ")
+        }
+    }
 
     val numerosPares: IntProgression = 2..100 step 2
-    println("\n$numerosPares")
     numerosPares.forEach { print("$it ") }
 
-    val multiplosDeTres: IntProgression = 99 downTo 3 step 3
-    println("\n$multiplosDeTres")
-    multiplosDeTres.forEach { print("$it ") }
+    val numerosParesReverso: IntProgression = 100 downTo 2 step 2
+    numerosParesReverso.forEach { print("$it ") }
 
-    val deZeroANove: IntRange = 0 until 10
-    println("\n$deZeroANove")
-    deZeroANove.forEach { print("$it ") }
+    val salarios: DoubleArray = doubleArrayOf(1500.55, 9100.0, 2990.99, 8500.0, 10000.0)
+
+    val base = 1500.0
+    val topo = 4000.0
+    var contador = 0
+    for (salario in salarios) {
+        if(salario in base..topo) {
+            contador++
+        }
+    }
 
     val alfabeto: CharRange = 'a'..'z'
-    println("\n$alfabeto")
+
     alfabeto.forEach { print("$it ") }
+
+    if('k' in alfabeto) {
+        println("O caractere 'k' está contido em $alfabeto")
+    }
 }

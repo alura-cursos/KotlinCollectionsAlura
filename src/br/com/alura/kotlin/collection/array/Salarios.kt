@@ -4,9 +4,6 @@ fun main() {
     val salarios = doubleArrayOf(1500.55, 9100.0, 2990.99, 8500.0, 10000.0)
     println("Salários: ${salarios.joinToString(prefix = "[", postfix = "]")}")
 
-    val somaDosSalarios: Double = salarios.sum()
-    println("Soma total de salários: $somaDosSalarios")
-
     println("Maior salário entre os três primeiros: ${salarios.take(3).max()}")
 
     println("Menor salário entre os três últimos: ${salarios.takeLast(3).min()}")

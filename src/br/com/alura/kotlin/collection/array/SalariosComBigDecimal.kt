@@ -35,36 +35,6 @@ private fun calculaAumento(salario: BigDecimal, aumento: BigDecimal) =
 private fun multiplicaEArredonda(a: BigDecimal, b: BigDecimal) =
     (a * b).setScale(2, RoundingMode.UP)
 
-private fun bigDecimalArrayDe(vararg elementos: String): Array<BigDecimal> {
-    val bigDecimalArray: Array<BigDecimal> = Array(elementos.size) { BigDecimal.ZERO }
-    for(i in elementos.indices) {
-        bigDecimalArray[i] = elementos[i].toBigDecimal()
-    }
-    return bigDecimalArray
-}
-
-fun Array<BigDecimal>.soma(): BigDecimal {
-    var total = BigDecimal.ZERO
-    for(elemento in this) {
-        total += elemento
-    }
-    return total
-}
-
-private fun Array<BigDecimal>.mediaDosValoresAcimaDe(valorMinimo: BigDecimal): BigDecimal =
-    this.filter { it > valorMinimo }
-        .toTypedArray()
-        .media()
-
-fun Array<BigDecimal>.media(): BigDecimal {
-    val soma: BigDecimal = this.soma()
-    return if (this.isEmpty()) {
-        BigDecimal.ZERO
-    } else {
-        soma / this.size.toBigDecimal()
-    }
-}
-
 private fun ordenaSalariosERemoveOMenor(salarios: Array<BigDecimal>) = salarios.sorted().drop(1)
 
 private fun somaSalariosComAumentoXMeses(salarios: Array<BigDecimal>, gastoInicial: BigDecimal, meses: BigDecimal): BigDecimal {

@@ -1,6 +1,7 @@
 package br.com.alura.kotlin.collection.array
 
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 fun bigDecimalArrayDe(vararg elementos: String): Array<BigDecimal> {
     val bigDecimalArray: Array<BigDecimal> = Array(elementos.size) { BigDecimal.ZERO }
@@ -8,6 +9,14 @@ fun bigDecimalArrayDe(vararg elementos: String): Array<BigDecimal> {
         bigDecimalArray[i] = elementos[i].toBigDecimal()
     }
     return bigDecimalArray
+}
+
+fun BigDecimal.multiplicaPor(
+    multiplicando: BigDecimal,
+    escala: Int = 2,
+    arredondamento: RoundingMode = RoundingMode.UP
+): BigDecimal {
+    return (this * multiplicando).setScale(escala, arredondamento)
 }
 
 fun Array<BigDecimal>.soma(): BigDecimal {

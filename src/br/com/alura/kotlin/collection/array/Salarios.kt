@@ -19,7 +19,7 @@ fun main() {
 
     val gastoInicial = salarios.sum()
     val meses = 6
-    val somatoriaComAumento: Double = somaSalariosComAumentoXMeses(salarios, gastoInicial, meses)
+    val somatoriaComAumento: Double = somaSalariosXMeses(salarios, gastoInicial, meses)
     println("Soma total de salários com aumento: $somatoriaComAumento")
 
     val salariosEmOrdem = salarios.sorted()
@@ -40,7 +40,7 @@ private fun DoubleArray.mediaDosValoresAcimaDe(valorMinimo: Double): Double =
 
 private fun ordenaSalariosERemoveOMenor(salarios: DoubleArray) = salarios.sorted().drop(1)
 
-private fun somaSalariosComAumentoXMeses(salarios: DoubleArray, gastoInicial: Double, meses: Int): Double {
+private fun somaSalariosXMeses(salarios: DoubleArray, gastoInicial: Double, meses: Int): Double {
     return salarios.fold(gastoInicial) { acumulador, salario ->
         acumulador + (salario * meses)
     }

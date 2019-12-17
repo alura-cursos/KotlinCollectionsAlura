@@ -5,38 +5,34 @@ import java.math.BigDecimal
 fun main() {
     val salarios: Array<BigDecimal> = bigDecimalArrayDe("1500.55", "9100.00", "2990.99", "8500.00", "10000.00")
 
-    println(salarios.contentToString())
-
     val aumento = "1.10".toBigDecimal()
     val salariosComAumento: List<BigDecimal> = salarios.map { salario -> salario.multiplicaPor(aumento) }
 
-    val salariosComAumentoRelativo: List<BigDecimal> = salarios.map { salario ->
-        calculaAumentoRelativo(salario, aumento)
-    }
+    val salariosComAumentoRelativo: Array<BigDecimal> = salarios
+        .map { salario -> calculaAumentoRelativo(salario, aumento) }
+        .toTypedArray()
 
     val gastoInicial = salarios.soma()
     val meses = 6
-    val somatoriaComAumento: BigDecimal = somaSalariosComAumentoXMeses(
-            salariosComAumentoRelativo.toTypedArray(),
+    val somatoriaComAumento: BigDecimal = somaSalariosXMeses(
+            salariosComAumentoRelativo,
             gastoInicial,
             BigDecimal(meses))
-    println(somatoriaComAumento)
 
-    val maiorSalarioDosTresPrimeiros = salarios.take(3).max()
+    val menorMedia = salariosComAumentoRelativo
+        .sorted()
+        .take(3)
+        .toTypedArray()
+        .media()
 
-    val menorSalarioDosTresUltimos = salarios.takeLast(3).min()
-
-    val salariosEmOrdem = salarios.sorted()
-
-    val menorValorRemovido: List<BigDecimal> = ordenaSalariosERemoveOMenor(salarios)
-
-    val media: BigDecimal = salarios.mediaDosValoresAcimaDe(BigDecimal(2000))
-
+    val maiorMedia = salariosComAumentoRelativo
+        .sorted()
+        .takeLast(3)
+        .toTypedArray()
+        .media()
 }
 
-private fun ordenaSalariosERemoveOMenor(salarios: Array<BigDecimal>) = salarios.sorted().drop(1)
-
-private fun somaSalariosComAumentoXMeses(salarios: Array<BigDecimal>, gastoInicial: BigDecimal, meses: BigDecimal): BigDecimal {
+private fun somaSalariosXMeses(salarios: Array<BigDecimal>, gastoInicial: BigDecimal, meses: BigDecimal): BigDecimal {
     return salarios.fold(gastoInicial) { acumulador, salario ->
         acumulador + salario.multiplicaPor(meses)
     }

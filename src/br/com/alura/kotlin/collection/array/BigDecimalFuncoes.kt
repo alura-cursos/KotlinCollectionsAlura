@@ -27,16 +27,10 @@ fun Array<BigDecimal>.soma(): BigDecimal {
     return total
 }
 
-fun Array<BigDecimal>.mediaDosValoresAcimaDe(valorMinimo: BigDecimal): BigDecimal =
-    this.filter { it > valorMinimo }
-        .toTypedArray()
-        .media()
-
 fun Array<BigDecimal>.media(): BigDecimal {
-    val soma: BigDecimal = this.soma()
     return if (this.isEmpty()) {
         BigDecimal.ZERO
     } else {
-        soma / this.size.toBigDecimal()
+        this.soma() / this.size.toBigDecimal()
     }
 }

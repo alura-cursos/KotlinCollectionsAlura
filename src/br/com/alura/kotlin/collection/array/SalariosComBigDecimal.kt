@@ -6,26 +6,29 @@ fun main() {
     val salarios: Array<BigDecimal> = bigDecimalArrayDe("1500.55", "9100.00", "2990.99", "8500.00", "10000.00")
 
     val aumento = "1.10".toBigDecimal()
-    val salariosComAumento: List<BigDecimal> = salarios.map { salario -> salario.multiplicaPor(aumento) }
-
-    val salariosComAumentoRelativo: Array<BigDecimal> = salarios
+    val salariosComAumento: Array<BigDecimal> = salarios
         .map { salario -> calculaAumentoRelativo(salario, aumento) }
         .toTypedArray()
 
     val gastoInicial = salarios.soma()
-    val meses = 6
-    val somatoriaComAumento: BigDecimal = somaSalariosXMeses(
-            salariosComAumentoRelativo,
-            gastoInicial,
-            BigDecimal(meses))
+    val meses = BigDecimal(6)
+    val somatoriaComAumento: BigDecimal = somaSalariosXMeses(salariosComAumento, gastoInicial, meses)
 
-    val menorMedia = salariosComAumentoRelativo
+    val menorMedia = mediaMenoresSalarios(salariosComAumento)
+
+    val maiorMedia = mediaMaioresSalarios(salariosComAumento)
+}
+
+private fun mediaMenoresSalarios(salarios: Array<BigDecimal>): BigDecimal {
+    return salarios
         .sorted()
         .take(3)
         .toTypedArray()
         .media()
+}
 
-    val maiorMedia = salariosComAumentoRelativo
+private fun mediaMaioresSalarios(salarios: Array<BigDecimal>): BigDecimal {
+    return salarios
         .sorted()
         .takeLast(3)
         .toTypedArray()

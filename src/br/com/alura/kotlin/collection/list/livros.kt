@@ -10,3 +10,27 @@ fun listaDeLivros() = mutableListOf(
     Livro(titulo = "Mayombe", autor = "Pepetela", anoPublicacao = 1979, editora = "Editora B"),
     Livro(titulo = "O Cortiço", autor = "Aluísio Azevedo", anoPublicacao = 1890, editora = "Editora B")
 )
+
+fun Collection<Livro?>.imprimeListaComMarcadores() {
+    val listaComMarcadores = this
+        .filterNotNull()
+        .joinToString(separator = "\n") {
+            " - ${it.titulo} de ${it.autor}"
+        }
+    println("\n ### Lista de Livros ### \n${listaComMarcadores}")
+}
+
+fun Collection<Livro?>.imprimeLivrosPorEditora() {
+    println("\n ### Lista de Livros Por Editora ###")
+    this.filterNotNull()
+        .groupBy { it.editora ?: "Editora X" }
+        .forEach { (editora: String, livros: List<Livro>) ->
+            println(" $editora: ${livros.joinToString { it.titulo }}")
+        }
+}
+
+fun Collection<Livro?>.autoresOrdenados(): List<String> =
+    this.filterNotNull()
+        .map { it.autor }
+        .distinct()
+        .sorted()

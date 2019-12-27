@@ -52,25 +52,12 @@ private fun livrosNovos(): List<Livro> =
             editora = "Editora B")
     )
 
-fun Collection<Livro?>.imprimeListaComMarcadores() {
-    println("\n ### Lista de Livros ###")
-    println(this.filterNotNull().joinToString(separator = "\n") { " - ${it.titulo} de ${it.autor}" })
+fun MutableList<Livro>.imprimeListaComMarcadores() {
+    val listaComMarcadores = this.joinToString(separator = "\n") {
+        " - ${it.titulo} de ${it.autor}"
+    }
+    println("\n ### Lista de Livros ### \n${listaComMarcadores}")
 }
-
-fun Collection<Livro?>.imprimeLivrosPorEditora() {
-    println("\n ### Lista de Livros Por Editora ###")
-    this.filterNotNull()
-        .groupBy { it.editora ?: "Editora X" }
-        .forEach { (editora: String, livros: List<Livro>) ->
-            println(" $editora: ${livros.joinToString { it.titulo }}")
-        }
-}
-
-fun Collection<Livro?>.autoresOrdenados(): List<String> =
-    this.filterNotNull()
-        .map { it.autor }
-        .distinct()
-        .sorted()
 
 fun titulosOrdenadosPorAnoPublicacaoFiltradosPorAutor(livros: Collection<Livro?>, prefixoAutor: String): List<String> {
     return livros

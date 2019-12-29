@@ -20,6 +20,14 @@ fun Collection<Livro?>.imprimeListaComMarcadores() {
     println("\n ### Lista de Livros ### \n${listaComMarcadores}")
 }
 
+fun Collection<Livro?>.titulosPorAnoPublicacaoDoAutor(prefixoAutor: String): List<String> {
+    return this
+        .filterNotNull()
+        .filter { it.autor.startsWith(prefixoAutor) }
+        .sortedBy { it.anoPublicacao }
+        .map { it.titulo }
+}
+
 fun Collection<Livro?>.imprimeLivrosPorEditora() {
     println("\n ### Lista de Livros Por Editora ###")
     this.filterNotNull()

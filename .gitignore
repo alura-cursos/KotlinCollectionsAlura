@@ -10,3 +10,5 @@ bin/
 *.iml
 *.ipr
 /out/
+
+lib

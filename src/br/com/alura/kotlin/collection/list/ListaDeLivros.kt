@@ -32,7 +32,8 @@ fun main() {
     val livro5 = Livro(
         titulo = "Sagarana",
         autor = "João Guimarães Rosa",
-        anoPublicacao = 1946
+        anoPublicacao = 1946,
+        editora = "Editora A"
     )
     meusLivros.add(livro5)
 
@@ -52,31 +53,14 @@ fun main() {
 
     val titulosFiltrados = meusLivrosComNulos.titulosPorAnoPublicacaoDoAutor("Jo")
 
-    println("\n" + titulosFiltrados)
+    println("\n $titulosFiltrados \n")
 
-    meusLivrosComNulos.addAll( livrosNovos() )
+    meusLivros.add(livro3)
+    meusLivros
+        .groupBy { it.editora ?: "Editora desconhecida" }
+        .forEach { (editora: String?, livros: List<Livro>) ->
+            println(" $editora: ${livros.joinToString { it.titulo }}")
+        }
 
-    meusLivrosComNulos.imprimeLivrosPorEditora()
-
-    println("\n" + meusLivrosComNulos.autoresOrdenados())
 
 }
-
-private fun livrosNovos(): List<Livro> =
-    listOf(
-        Livro(
-            titulo = "Vidas Secas",
-            autor = "Graciliano Ramos",
-            anoPublicacao = 1938,
-            editora = "Editora A"),
-        Livro(
-            titulo = "Mayombe",
-            autor = "Pepetela",
-            anoPublicacao = 1979,
-            editora = "Editora B"),
-        Livro(
-            titulo = "O Cortiço",
-            autor = "Aluísio Azevedo",
-            anoPublicacao = 1890,
-            editora = "Editora B")
-    )

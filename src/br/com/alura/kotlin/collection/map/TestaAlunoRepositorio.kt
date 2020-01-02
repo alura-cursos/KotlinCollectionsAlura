@@ -12,6 +12,9 @@ fun main() {
 
     repositorio.adiciona(fernando)
 
-    println(repositorio.carregaTodos())
+    println(repositorio.buscaTodos())
+
+    val aluno = repositorio.busca("RM101")
+    println(aluno)
 
 }

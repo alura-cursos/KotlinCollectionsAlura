@@ -15,7 +15,9 @@ class AlunoRepositorio {
     fun busca(rm: String): Aluno? = alunos[rm]
 
     fun altera(rm: String, aluno: Aluno) {
-        alunos[rm] = aluno
+        if(alunos.containsKey(rm)) {
+            alunos[rm] = aluno
+        }
     }
 
     fun remove(rm: String): Aluno? = alunos.remove(rm)
